@@ -268,10 +268,6 @@ function M.edit()
         fname = user_io.get_selected(prompt)
     end
     local command = source.sink(fname)
-    if use_history then
-        model.history.update(user_io.get_dir_file_pair(prompt))
-        model.history.write()
-    end
     M.quit()
     api.command(winnum..'windo '..command)
 end
