@@ -54,7 +54,7 @@ function M.source()
     history = {}
     len = 0
     local bufs
-    local files = buffers()
+    local files = vim.api.nvim_get_var('findr_oldfiles')
     join_to(files, vim.api.nvim_get_vvar('oldfiles'))
     local prev_pair = {}
     for _, line in ipairs(files) do

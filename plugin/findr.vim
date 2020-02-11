@@ -67,5 +67,16 @@ endif
 if !highlight_exists('FindrNormal')
   hi! link FindrNormal Normal
 endif
-sign define findrselected linehl=FindrSelected
+
+let g:findr_oldfiles = []
+
+function! s:addfile(file)
+    if a:file != '' && a:file != 'findr'
+        call insert(g:findr_oldfiles, a:file, 0)
+    end
+endfunction
+
+augroup FindrOldFiles
+    autocmd BufEnter * call s:addfile(expand('<afile>:p'))
+augroup END
 
